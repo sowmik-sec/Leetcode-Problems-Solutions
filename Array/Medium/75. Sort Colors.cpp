@@ -2,9 +2,11 @@ class Solution {
 public:
     void sortColors(vector<int>& nums) {
         int z=0, o = 0, t = 0, n = nums.size();
-        z = count(nums.begin(),nums.end(),0);
-        o = count(nums.begin(),nums.end(),1);
-        t = count(nums.begin(),nums.end(),2);
+        for(int i=0;i<n;i++) {
+            if(nums[i]==0)++z;
+            else if(nums[i]==1)++o;
+            else ++t;
+        }
         for(int i=0;i<n;i++) {
             if(z) {
                 nums[i] = 0;
