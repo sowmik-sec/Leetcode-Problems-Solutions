@@ -22,11 +22,11 @@ using namespace std;
 bool gre(ll a,ll b){return a>b;}
 
 /**
-20.    ****
-       *  *
-       *  *
-       *  *
-       ****
+25.       *****
+         *   *
+        *   *
+       *   *
+      *****
 */
 
 void pattern(int n)
