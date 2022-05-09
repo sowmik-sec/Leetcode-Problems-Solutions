@@ -1,25 +1,25 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        merge_sort(nums,0,nums.size());
+        quick_sort(nums,0,nums.size()-1);
         return nums[k-1];
     }
-    void merge(vector<int> &a, int l, int m, int h) {
-        vector<int> temp(h-l);
-        int i = l, j = m, k = 0;
-        while(i<m and j<h) {
-            if(a[i]>a[j]) temp[k++] = a[i++];
-            else temp[k++] = a[j++];
+    int partition(vector<int> &a, int l, int h) {
+        int pivot = a[h];
+        int i, j;
+        for(i = l-1,j=l;j<h;j++) {
+            if(a[j]>pivot) {
+                i++;
+                swap(a[i],a[j]);
+            }
         }
-        while(i<m) temp[k++] = a[i++];
-        while(j<h) temp[k++] = a[j++];
-        for(int it=0;it<temp.size();it++) a[l+it] = temp[it];
+        swap(a[i+1],a[h]);
+        return i+1;
     }
-    void merge_sort(vector<int> &a, int l, int h) {
-        if(h-l==1) return;
-        int m = l + (h-l)/2;
-        merge_sort(a,l,m);
-        merge_sort(a,m,h);
-        merge(a,l,m,h);
+    void quick_sort(vector<int> &a, int l, int h) {
+        if(l>=h) return;
+        int p = partition(a,l,h);
+        quick_sort(a,l,p-1);
+        quick_sort(a,p+1,h);
     }
 };
